@@ -1,0 +1,41 @@
+﻿@model IEnumerable<QuanLyHocSinh.Models.ClassModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>@ViewBag.Message</h3>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th style="padding-left:100px">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelitem => item.ID)
+        </td>
+        <td style="padding-left:100px">
+            @Html.DisplayFor(modelitem => item.Name)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelitem => item.Students)
+        </td>*@
+        <td style="padding-left:100px">
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+    }
+</table>

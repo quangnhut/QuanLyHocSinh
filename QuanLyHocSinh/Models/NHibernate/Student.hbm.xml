@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="QuanLyHocSinh.Domain" assembly="QuanLyHocSinh">
+
+  <class name="Student" dynamic-update="true" table="Student">
+
+    <id name="ID" column ="ID" type="Int32">
+      <generator class="native" />
+    </id>
+
+    <property name="FirstName" column="FirstName" type="string"/>
+    <property name="LastName" column="LastName" type="string"/>
+    <property name="Code" column="Code" type="string"/>
+    <property name="ClassID" column="ClassID" type="int"/>
+
+
+    <!--<one-to-one name="ClassID" column="ClassID" cascade = "save-update"></one-to-one>-->
+
+  </class>
+
+</hibernate-mapping>
