@@ -5,6 +5,7 @@ using System.Web;
 using Iesi.Collections.Generic;
 using System.Collections.ObjectModel;
 using QuanLyHocSinh.Domain;
+using NHibernate;
 
 namespace QuanLyHocSinh.Models
 {
@@ -32,6 +33,18 @@ namespace QuanLyHocSinh.Models
                 Name = entity.Name
             };
         }
+
+        //public Student AddStudent(int id)
+        //{
+        //    using (ISession session = NHIbernateSession.OpenSession())
+        //    {
+        //        var getclassname = session.Query<Class>().FirstOrDefault<Class>(c => c.ID == id);
+        //        Student student = new Student();
+        //        student.ClassID = getclassname.ID;
+        //        return student;
+        //    }
+        //}
+
 
     }
 }

@@ -7,83 +7,65 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QuanLyHocSinh.Domain;
+using QuanLyHocSinh.IService;
 
 namespace QuanLyHocSinh.Controllers
 {
     public class StudentController : Controller
     {
+        private IStudentService istudentservice;
+        public StudentController(IStudentService service)
+        {
+            this.istudentservice = service;
+        }
         // GET: Student
         public ActionResult Index()
         {
-            using (ISession session = NHIbernateSession.OpenSession())
-            {
-                var students = session.Query<Student>().ToList();
+            var model = istudentservice.GetAll();
                 ViewBag.Message = "Đây là trang STUDENT";
                 List<StudentModel> liststudent = new List<StudentModel>();
-                for (int i=0; i< students.Count; i++)
+                for (int i=0; i< model.Count; i++)
                 {
-                    var studentmodel = StudentModel.ToModel(students[i]);
+                    var studentmodel = StudentModel.ToModel(model[i]);
                     liststudent.Add(studentmodel);
                 }
                 return View(liststudent);
-            }
+            
         }
 
-        public ActionResult Create()
-        {
+        //public ActionResult Create()
+        //{
 
-            return View();
+        //    return View();
 
-        }
+        //}
 
-        [HttpPost]
+        //[HttpPost]
 
-        public ActionResult Create(Student student)
-        {
+        //public ActionResult Create(Student student)
+        //{
 
-            try
-            {
+        //    try
+        //    {
+        //        istudentservice.Insert(student);
 
-                using (ISession session = NHIbernateSession.OpenSession())
-                {
+        //        return RedirectToAction("Index");
+        //    }
 
-                    using (ITransaction transaction = session.BeginTransaction())
-                    {
+        //    catch (Exception exception)
+        //    {
 
-                        session.Save(student);
+        //        return View();
 
-                        transaction.Commit();
+        //    }
 
-                    }
-
-                }
-
-                return RedirectToAction("Index");
-
-            }
-
-            catch (Exception exception)
-            {
-
-                return View();
-
-            }
-
-        }
+        //}
 
         public ActionResult Edit(int ID)
         {
 
-            using (ISession session = NHIbernateSession.OpenSession())
-            {
-
-                var student = session.Get<Student>(ID);
-
-                return View(student);
-
-            }
-
-
+            var model = istudentservice.Get(ID);
+            return View(model);
         }
 
         [HttpPost]
@@ -93,33 +75,9 @@ namespace QuanLyHocSinh.Controllers
 
             try
             {
+                var editstudent = istudentservice.Update(ID, student);
 
-                using (ISession session = NHIbernateSession.OpenSession())
-                {
-
-                    var studentUpdate = session.Get<Student>(ID);
-
-
-                    studentUpdate.FirstName = student.FirstName;
-
-                    studentUpdate.LastName = student.LastName;
-
-                    studentUpdate.Code = student.Code;
-
-                    studentUpdate.ClassID = student.ClassID;
-
-
-                    using (ITransaction transaction = session.BeginTransaction())
-                    {
-
-                        session.Save(studentUpdate);
-
-                        transaction.Commit();
-
-
-                    }
-
-                }
+                istudentservice.Insert(editstudent);
 
                 return RedirectToAction("Index");
 
@@ -138,15 +96,8 @@ namespace QuanLyHocSinh.Controllers
 
         public ActionResult Delete(int ID)
         {
-
-            using (ISession session = NHIbernateSession.OpenSession())
-            {
-
-                var student = session.Get<Student>(ID);
-
-                return View(student);
-
-            }
+            var model = istudentservice.Get(ID);
+            return View(model);
 
         }
         [HttpPost]
@@ -156,20 +107,7 @@ namespace QuanLyHocSinh.Controllers
 
             try
             {
-
-                using (ISession session = NHIbernateSession.OpenSession())
-                {
-
-                    using (ITransaction transaction = session.BeginTransaction())
-                    {
-
-                        session.Delete(student);
-
-                        transaction.Commit();
-
-                    }
-
-                }
+                istudentservice.Delete(ID, student);
 
                 return RedirectToAction("Index");
 

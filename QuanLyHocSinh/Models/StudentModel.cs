@@ -43,6 +43,15 @@ namespace QuanLyHocSinh.Models
             };
         }
 
+        public Class GetClassById(int id)
+        {
+
+            using (ISession session = NHIbernateSession.OpenSession())
+            {
+                var getclassname = session.Query<Class>().FirstOrDefault<Class>(c => c.ID == id);
+                return getclassname;
+            }
+        }
 
     }
 

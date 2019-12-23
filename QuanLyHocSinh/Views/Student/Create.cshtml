@@ -1,4 +1,5 @@
-﻿@model QuanLyHocSinh.Models.StudentModel
+﻿@*@model QuanLyHocSinh.Models.StudentModel
+
 
 @{
     ViewBag.Title = "Create";
@@ -12,46 +13,47 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-<fieldset>
-    <legend>Student</legend>
+    <fieldset>
+        <legend>Student</legend>
 
-    <div class="editor-label">
-        @Html.LabelFor(model => model.FirstName)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.FirstName)
-        @Html.ValidationMessageFor(model => model.FirstName)
-    </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
 
-    <div class="editor-label">
-        @Html.LabelFor(model => model.LastName)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.LastName)
-        @Html.ValidationMessageFor(model => model.LastName)
-    </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
 
-    <div class="editor-label">
-        @Html.LabelFor(model => model.Code)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.Code)
-        @Html.ValidationMessageFor(model => model.Code)
-    </div>
-    <div class="editor-label">
-        @Html.LabelFor(model => model.ClassID)
-    </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Code)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Code)
+            @Html.ValidationMessageFor(model => model.Code)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClassID)
+        </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.ClassID)
             @Html.ValidationMessageFor(model => model.ClassID)
+
         </div>
 
-    <p>
-        <button type="submit" value="Create">Create</button>
-    </p>
-</fieldset>
+        <p>
+            <button type="submit" value="Create">Create</button>
+        </p>
+    </fieldset>
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@
