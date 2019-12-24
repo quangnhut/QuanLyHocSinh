@@ -23,24 +23,41 @@ namespace QuanLyHocSinh.Controllers
             this.iclassservice = service;
         }
 
-       
+
         //GET: Class
-        public ActionResult Index()
+        public ActionResult Index( string name)
         {
+            ViewBag.Message = "CLASS PAGE";
 
-            var model = iclassservice.GetAll();  
+            var model = iclassservice.GetAll();
 
-                List<ClassModel> listclass = new List<ClassModel>();
+            List<ClassModel> listclass = new List<ClassModel>();
 
-                for (int i = 0; i < model.Count; i++)
-                {
-                    var classmodel = ClassModel.ToModel(model[i]);
-                    listclass.Add(classmodel);
-                }
+            for (int i = 0; i < model.Count; i++)
+            {
+                var classmodel = ClassModel.ToModel(model[i]);
+                listclass.Add(classmodel);
+            }
 
-                ViewBag.Message = "Đây là trang CLASS";
+            if (name == "")
+            {
                 return View(listclass);
-            
+            }
+            else if(name != null)
+            {
+                var classdomain  = iclassservice.SearchByName(name);
+                List<ClassModel> classmodelsearch = new List<ClassModel>();
+                for (int i =0; i< classdomain.Count; i++)
+                {
+                    var _classmodel = ClassModel.ToModel(classdomain[i]);
+                    classmodelsearch.Add(_classmodel);
+                }
+               
+                return View(classmodelsearch);
+            }
+
+            return View(listclass);
+
         }
         public ActionResult Create()
         {
@@ -54,7 +71,7 @@ namespace QuanLyHocSinh.Controllers
             {
 
                 iclassservice.Insert(_class);
-                
+
                 return RedirectToAction("Index");
 
             }
@@ -151,6 +168,21 @@ namespace QuanLyHocSinh.Controllers
             }
 
         }
+
+        //[HttpGet]
+        //public ActionResult Search(string name)
+        //{
+        //    if (iclassservice.SearchByName(name) != null)
+        //    {
+        //        return View(iclassservice.SearchByName(name));
+        //    }
+        //    else
+        //    {
+        //        return View();
+        //    }
+        //}
+
+
 
     }
 }

@@ -19,47 +19,39 @@ namespace QuanLyHocSinh.Controllers
             this.istudentservice = service;
         }
         // GET: Student
-        public ActionResult Index()
+        public ActionResult Index(string key)
         {
             var model = istudentservice.GetAll();
-                ViewBag.Message = "Đây là trang STUDENT";
+                ViewBag.Message = "STUDENT PAGE";
                 List<StudentModel> liststudent = new List<StudentModel>();
                 for (int i=0; i< model.Count; i++)
                 {
                     var studentmodel = StudentModel.ToModel(model[i]);
                     liststudent.Add(studentmodel);
                 }
+
+            if (key == "")
+            {
                 return View(liststudent);
+            }
+            else if (key != null)
+            {
+                var studentdomain = istudentservice.SearchAll(key);
+                List<StudentModel> studentmodelsearch = new List<StudentModel>();
+                for (int i = 0; i < studentdomain.Count; i++)
+                {
+                    var studentmodel = StudentModel.ToModel(studentdomain[i]);
+                    studentmodelsearch.Add(studentmodel);
+                }
+                return View(studentmodelsearch);
+            }
+
+
+
+            return View(liststudent);
             
         }
 
-        //public ActionResult Create()
-        //{
-
-        //    return View();
-
-        //}
-
-        //[HttpPost]
-
-        //public ActionResult Create(Student student)
-        //{
-
-        //    try
-        //    {
-        //        istudentservice.Insert(student);
-
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    catch (Exception exception)
-        //    {
-
-        //        return View();
-
-        //    }
-
-        //}
 
         public ActionResult Edit(int ID)
         {

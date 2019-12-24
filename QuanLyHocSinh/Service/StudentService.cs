@@ -41,6 +41,18 @@ namespace QuanLyHocSinh.Service
             transaction.Commit();
         }
 
+        public List<Student> SearchAll(string key)
+        {
+            var liststudent = session.Query<Student>().Where<Student>(c => c.Code.ToUpper() == key.ToUpper() || c.FirstName.ToUpper() == key.ToUpper() || c.LastName.ToUpper() == key.ToUpper()).ToList();
+            return liststudent;
+        }
+
+        public List<Student> SearchByCode(string code)
+        {
+            var liststudent = session.Query<Student>().Where<Student>(c => c.Code.ToUpper() == code.ToUpper()).ToList();
+            return liststudent;
+        }
+
         public Student Update(int id, Student _student)
         {
             var studentupdate = session.Get<Student>(id);

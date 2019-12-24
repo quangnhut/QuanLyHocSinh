@@ -1,58 +1,74 @@
 ﻿@model IEnumerable<QuanLyHocSinh.Models.StudentModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Student";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>@ViewBag.Message</h3>
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
-
-<table>
+<form method="get">
+    <table>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ID)
+                <h3 style="padding-right: 650px">@ViewBag.Message</h3>
             </th>
-            <th style="padding-left:100px">
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th style="padding-left:100px">
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th style="padding-left:100px">
-                @Html.DisplayNameFor(model => model.Code)
-            </th>
-            <th style="padding-left:100px">
-                ClassName
+            <th style="">
+                <input type="text" id="key" name="key" />
+                <button type="submit" value="Index">Search</button>
             </th>
         </tr>
+    </table>
+</form>
 
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelitem => item.ID)
-            </td>
-            <td style="padding-left:100px">
-                @Html.DisplayFor(modelitem => item.FirstName)
-            </td>
-            <td style="padding-left:100px">
-                @Html.DisplayFor(modelitem => item.LastName)
-            </td>
-            <td style="padding-left:100px">
-                @Html.DisplayFor(modelitem => item.Code)
-            </td>
-            <td style="padding-left:100px">
-                @Html.DisplayFor(modelitem => item.GetClassById(item.ClassID).Name)
-            </td>
-            <td style="padding-left:100px">
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+<form method="get">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ID)
+                </th>
+                <th style="padding-left:100px">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th style="padding-left:100px">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th style="padding-left:100px">
+                    @Html.DisplayNameFor(model => model.Code)
+                </th>
+                <th style="padding-left:100px">
+                    ClassName
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
 
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
-</table>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.ID)
+                    </td>
+                    <td style="padding-left:100px">
+                        @Html.DisplayFor(modelitem => item.FirstName)
+                    </td>
+                    <td style="padding-left:100px">
+                        @Html.DisplayFor(modelitem => item.LastName)
+                    </td>
+                    <td style="padding-left:100px">
+                        @Html.DisplayFor(modelitem => item.Code)
+                    </td>
+                    <td style="padding-left:100px">
+                        @Html.DisplayFor(modelitem => item.GetClassById(item.ClassID).Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+    </table>
+</form>

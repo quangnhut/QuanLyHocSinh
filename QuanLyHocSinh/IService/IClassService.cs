@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QuanLyHocSinh.Domain;
+using FX.Data;
 
 namespace QuanLyHocSinh.IService
 {
-    public interface IClassService
+    public interface IClassService 
     {
         List<Class> GetAll();
         Class Get(int id);
@@ -16,5 +17,6 @@ namespace QuanLyHocSinh.IService
         void Delete(int id, Class deleteclass);
         Student AddStudentByClasId(int id);
         void InsertStudent(Student student);
+        List<Class> SearchByName(string name);
     }
 }

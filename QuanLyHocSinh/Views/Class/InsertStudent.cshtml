@@ -1,11 +1,12 @@
 ﻿@model QuanLyHocSinh.Domain.Student
 
 @{
-    ViewBag.Title = "InsertStudent";
+    ViewBag.Title = "Add Student";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>InsertStudent</h2>
+<h2>Add Student</h2>
+<hr />
 
 @using (Html.BeginForm())
 {
@@ -15,7 +16,7 @@
 <fieldset>
 
     <div class="editor-label">
-        @Html.LabelFor(model => model.FirstName)
+        <p>Nhập Họ</p>
     </div>
     <div class="editor-field">
         @Html.EditorFor(model => model.FirstName)
@@ -23,7 +24,7 @@
     </div>
 
     <div class="editor-label">
-        @Html.LabelFor(model => model.LastName)
+        <p style="padding-top: 15px">Nhập Tên</p>
     </div>
     <div class="editor-field">
         @Html.EditorFor(model => model.LastName)
@@ -31,7 +32,7 @@
     </div>
 
     <div class="editor-label">
-        @Html.LabelFor(model => model.Code)
+        <p style="padding-top: 15px">Nhập Mã sinh viên</p>
     </div>
     <div class="editor-field">
         @Html.EditorFor(model => model.Code)
@@ -39,8 +40,8 @@
     </div>
 
 
-    <p>
-        <button type="submit" value="InsertStudent">Add</button>
+    <p style="padding-top: 20px; padding-bottom: 25px">
+        <button type="submit" value="InsertStudent">Thêm</button>
     </p>
 </fieldset>
 }

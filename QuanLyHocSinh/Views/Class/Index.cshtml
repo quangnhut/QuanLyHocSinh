@@ -1,39 +1,56 @@
 ﻿@model IEnumerable<QuanLyHocSinh.Models.ClassModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Class";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h3>@ViewBag.Message</h3>
-<p>
-    @Html.ActionLink("Create New Class", "Create")
-</p>
-<table>
+<form method="get">
+    <table>
+            <tr>
+                <th style="padding-right: 750px">
+                    <p>
+                        @Html.ActionLink("Create New Class", "Create")
+                    </p>
+                </th>
+                <th>
+                    <input type="text" id="name" name="name" />
+                    <button type="submit" value="Index">Search</button>
+                </th>
+            </tr>
+    </table>
+</form>
+<table class="table table-bordered">
     <tr>
-        <th>
+        <th style="text-align: center">
             @Html.DisplayNameFor(model => model.ID)
         </th>
-        <th style="padding-left:100px">
+        <th style="text-align: center">
             @Html.DisplayNameFor(model => model.Name)
         </th>
+        <th></th>
+        <th></th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
     <tr>
-        <td>
+        <td style="text-align: center">
             @Html.DisplayFor(modelitem => item.ID)
         </td>
-        <td style="padding-left:100px">
+        <td style="text-align: center">
             @Html.DisplayFor(modelitem => item.Name)
         </td>
        
-        <td style="padding-left:100px">
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
-
+        <td style="text-align: center">
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+        </td>
+        <td style="text-align: center">
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+        <td style="text-align: center">
             @Html.ActionLink("Add New Student", "InsertStudent", new { id = item.ID })
         </td>
     </tr>

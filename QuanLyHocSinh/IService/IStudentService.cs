@@ -14,5 +14,8 @@ namespace QuanLyHocSinh.IService
         Student Update(int id, Student _student);
         void Insert(Student insertstudent);
         void Delete(int id, Student deletestudent);
+        List<Student> SearchByCode(string code);
+        List<Student> SearchAll(string key);
+
     }
 }

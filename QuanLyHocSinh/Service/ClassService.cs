@@ -7,10 +7,12 @@ using QuanLyHocSinh.Domain;
 using NHibernate.Linq;
 using NHibernate;
 using QuanLyHocSinh.Models;
+using FX.Data;
+using System.Linq.Expressions;
 
 namespace QuanLyHocSinh.Service
 {
-    public class ClassService : IClassService 
+    public class ClassService :  IClassService
     {
         ISession session = NHIbernateSession.OpenSession();
 
@@ -38,6 +40,12 @@ namespace QuanLyHocSinh.Service
             var classdomain = session.Query<Class>().ToList();
 
             return classdomain;
+        }
+
+        public List<Class> SearchByName(string name)
+        {
+            var _class = session.Query<Class>().Where<Class>(c => c.Name == name.ToUpper()).ToList();
+            return _class;      
         }
 
         public void Insert(Class insertclass)
